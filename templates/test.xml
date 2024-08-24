@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+  <item>
+    <content>“The person, be it gentleman or lady, who has not </content>
+    <auther>Jane Austen</auther>
+    <path>/author/Jane-Austen</path>
+  </item>
+  <item>
+    <content>“Good friends, good books, and a sleepy conscience</content>
+    <auther>Mark Twain</auther>
+    <path>/author/Mark-Twain</path>
+  </item>
+  <item>
+    <content>“I have always imagined that Paradise will be a ki</content>
+    <auther>Jorge Luis Borges</auther>
+    <path>/author/Jorge-Luis-Borges</path>
+  </item>
+  <item>
+    <content>“You can never get a cup of tea large enough or a </content>
+    <auther>C.S. Lewis</auther>
+    <path>/author/C-S-Lewis</path>
+  </item>
+  <item>
+    <content>“If you only read the books that everyone else is </content>
+    <auther>Haruki Murakami</auther>
+    <path>/author/Haruki-Murakami</path>
+  </item>
+  <item>
+    <content>“There is no friend as loyal as a book.”</content>
+    <auther>Ernest Hemingway</auther>
+    <path>/author/Ernest-Hemingway</path>
+  </item>
+  <item>
+    <content>“What really knocks me out is a book that, when yo</content>
+    <auther>J.D. Salinger</auther>
+    <path>/author/J-D-Salinger</path>
+  </item>
+  <item>
+    <content>“′Classic′ - a book which people praise and don't </content>
+    <auther>Mark Twain</auther>
+    <path>/author/Mark-Twain</path>
+  </item>
+  <item>
+    <content>“I declare after all there is no enjoyment like re</content>
+    <auther>Jane Austen</auther>
+    <path>/author/Jane-Austen</path>
+  </item>
+  <item>
+    <content>“You have to write the book that wants to be writt</content>
+    <auther>Madeleine L'Engle</auther>
+    <path>/author/Madeleine-LEngle</path>
+  </item>
+  <item>
+    <content>“... a mind needs books as a sword needs a whetsto</content>
+    <auther>George R.R. Martin</auther>
+    <path>/author/George-R-R-Martin</path>
+  </item>
+</items>

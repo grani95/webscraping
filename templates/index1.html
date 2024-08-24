@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/loader.css" rel="stylesheet" />
+    <title>WEB SCRAPING</title>
+    <!doctype html>
+    <style>
+      .card{
+        margin-top:15px;
+      }
+      #x{
+        margin: 15px;
+        /* padding:10px; */
+      }
+      .filter-container{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+
+      }
+      .filter-form{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 20px 0;
+        background-color: turquoise;
+      }
+      .filter-form input, .filter-form button{
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .filter-form input{
+        flex-grow: 1;
+        min-width: 200px;
+      }
+      .filter-form button{
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .filter-form button:hover{
+        background-color: #0056b3;
+      }
+
+    </style>
+  </head>
+
+<body dir="rtl" style="padding:15px;">
+  <nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+    </div>
+  </nav>
+<div class="filter-container container">
+  <h4  style="margin:15px;" class="col-md-3 alert alert-success">مرحبا بك</h4>
+
+  <div class="row filter-form" id="frm_container">
+    <form class="inline-form" id="srch">
+        <div class="row">
+            <div class="col-md-3">
+              <input class="form-control" type="text" name="cat" id="cat" placeholder="النوع" />
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" type="text" name="auther" id="auther" placeholder="الكاتب" />
+            </div>        
+            <div class="col-md-3">
+              <button class="btn btn-success" type="submit">بحث</button>
+            </div>
+          </div>
+    </form>
+  </div>
+<div class="row" id="container"></div> 
+<div class="row">
+  <div class="col-md-3">
+    <button class="btn btn-success" id="export">تصدير <i class="bi bi-file-earmark-spreadsheet-fill"></i></button>
+  </div>
+
+</div>   
+</body>
+<script>
+  function loading(){
+	let loader = document.createElement('div');
+	loader.classList.add('ring');
+	document.getElementById('container').appendChild(loader);
+}
+window.onload=function(){
+let frm =document.getElementById('srch')
+frm.addEventListener('submit',async function(e){
+  e.preventDefault()
+  let cat =document.getElementById('cat').value !== "" ? document.getElementById('cat').value : "default"
+let auther = document.getElementById('auther').value !== "" ? document.getElementById('auther').value : "default"
+  // console.log("http://127.0.0.1:5000/scrap/"+cat+"/"+auther)
+  loading()
+  let result = await fetch("http://127.0.0.1:5000/scrap/"+cat+"/"+auther)
+  .then(async response=>{
+    if(response.status==200){
+      return await response
+    }else{
+      return false
+    }
+  })
+  .then(async res=>{
+    return await res.json()
+  }).catch(err=>{
+      alert('YOU HAVE NO INTER NET CONNECTION !!')
+      document.getElementById('container').innerHTML='';
+      console.log(err)
+
+  })
+ let cont = document.getElementById('container')
+ cont.innerText=""
+ let r= document.createElement('DIV')
+ r.classList.add('row')
+ if(result[2].length > 0){
+  for(i=0; i < result[2].length; i++){
+    let c= document.createElement('DIV')
+    c.classList.add('col-md-3')
+    r.append(c)
+    let p= document.createElement('P')
+    p.classList.add('card-text')
+    p.setAttribute('id',"x")
+    p.innerText=result[2][i]
+    c.append(p)
+    let a= document.createElement('a')
+    let url = "https://quotes.toscrape.com/"+result[4][i]
+    a.href=url
+    a.innerText=result[3][i]
+    // p.classList.add('card-text')
+    c.append(a)
+  }
+ }
+ else{
+    r.innerHTML="<p>لا توجد بيانات لعرضها</p>"
+  }
+  cont.append(r)
+
+})
+
+/////   excel export ///////
+document.getElementById('export').addEventListener("click",function(e){
+  e.preventDefault()
+  
+})
+///////////////////////////
+
+
+}
+</script>
+<script src="/static/js/bootstrap.js"></script>
+
+</html>
